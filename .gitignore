@@ -1,0 +1,12 @@
+# Archivos de compilación
+build/
+.gradle/
+
+# Archivos de configuración local (¡IMPORTANTE!)
+local.properties
+
+# Archivos de IDE
+.idea/
+*.iml
+*.apk
+*.aab
