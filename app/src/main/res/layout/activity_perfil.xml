@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PerfilActivity">
+
+    <!-- Fondo -->
+<ImageView
+android:id="@+id/imgfondo"
+android:src="@drawable/fondo1"
+android:scaleType="centerCrop"
+android:layout_width="match_parent"
+android:layout_height="match_parent"/>
+
+<View
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#40000000"/>
+
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+
+<!-- Barra de herramientas simple -->
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbarPerfil"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="#80FFFFFF"
+    app:title="Mi Perfil"
+    app:titleTextColor="@android:color/white"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="32dp">
+
+    <!-- Imagen de Perfil Clickeable -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivPerfil"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FFFFFF"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toca la imagen para cambiarla"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Formulario -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correo Electrónico (No editable)"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/tvPerfilEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#40FFFFFF"
+        android:textColor="@android:color/white"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"/>
+
+    <EditText
+        android:id="@+id/etPerfilNombre"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Tu nombre"
+        android:textColor="@android:color/white"
+        android:paddingStart="12dp"
+        android:textColorHint="#FFFFFF"
+        android:background="#80FFFFFF"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/btnGuardarPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Guardar Cambios"
+        android:background="#80FFFFFF"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>
+</LinearLayout>
+    </FrameLayout>

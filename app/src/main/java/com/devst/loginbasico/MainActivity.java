@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 import android.app.ProgressDialog;
-import android.content.SharedPreferences; // <-- NUEVO
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,11 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private ApiService apiService;
     private ProgressDialog progressDialog;
 
-    // ===================================
-    // NUEVO: Para guardar el token
     public static final String PREFS_NAME = "MyPrefsFile";
     public static final String TOKEN_KEY = "token";
-    // ===================================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 onClickCrear(v);
             }
         });
-
-        // (Ya no necesitamos las credenciales demo)
     }
 
     public void onClickEntrar(View view) {
@@ -99,18 +94,21 @@ public class MainActivity extends AppCompatActivity {
                     String token = response.body().getToken();
                     Log.d("MainActivity", "Token recibido: " + token);
 
-                    // ===================================
-                    // NUEVO: Guardar el token
+                    // Guardar el token
                     SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
                     SharedPreferences.Editor editor = settings.edit();
                     editor.putString(TOKEN_KEY, token);
                     editor.apply();
-                    // ===================================
 
-                    // Ir a AccesoActivity
-                    Intent intent = new Intent(MainActivity.this, AccesoActivity.class);
+                    // =======================================================
+                    // ¡CAMBIO! Ir al Menú Principal, no al chat
+                    // =======================================================
+                    Intent intent = new Intent(MainActivity.this, MenuPrincipalActivity.class);
+                    // Limpiamos la pila para que no pueda "volver" al login
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                    finish(); // Cierra MainActivity para que no vuelva con "Back"
+                    finish(); // Cierra MainActivity
+                    // =======================================================
 
                 } else {
                     // Error (credenciales incorrectas, etc.)

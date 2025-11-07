@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SplashActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Fondo (reutilizamos el mismo de las otras pantallas) -->
+    <ImageView
+        android:id="@+id/imgfondo"
+        android:src="@drawable/fondo1"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- Capa oscura semitransparente -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#40000000"/>
+
+    <!-- Contenido Centrado -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="32dp">
+
+        <!-- Título de la App -->
+        <TextView
+            android:id="@+id/tvTituloSplash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="VoiceGPT Assistant"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:shadowColor="#80000000"
+            android:shadowRadius="6"
+            android:shadowDx="0"
+            android:shadowDy="2"/>
+
+        <!-- Indicador de Carga -->
+        <ProgressBar
+            android:id="@+id/progressBarSplash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTituloSplash"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:indeterminateTint="@android:color/white"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

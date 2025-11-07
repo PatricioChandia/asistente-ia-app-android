@@ -2,10 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- =================================================================== -->
-    <!-- N U E V O: Aquí añadimos el permiso para acceder a Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- =================================================================== -->
+    <!--¡NUEVOS PERMISOS!
+    Para leer imágenes de la galería (Android 13+)-->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!-- Fallback para Android más antiguos -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <application
         android:allowBackup="true"
@@ -16,21 +19,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginBasico"
-        android:usesCleartextTraffic="true"> <!-- IMPORTANTE: Para permitir tráfico HTTP en desarrollo -->
+        android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+        </activity>
+
         <activity android:name=".AccesoActivity"></activity>
         <activity android:name=".RegistroActivity" />
         <activity android:name=".InfoBasicaActivity" />
         <activity android:name=".EvaluacionEnviada" />
+
+        <!--
+        ===================================================================
+        ¡NUEVAS ACTIVIDADES DECLARADAS!
+        ===================================================================
+        -->
+        <activity
+            android:name=".MenuPrincipalActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity
+            android:name=".PerfilActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
 
     </application>
 
