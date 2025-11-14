@@ -1,4 +1,4 @@
-package com.devst.loginbasico.network;
+package com.devst.voicegpt.network;
 
 // Representa la respuesta de GET /api/perfil
 public class ProfileResponse {

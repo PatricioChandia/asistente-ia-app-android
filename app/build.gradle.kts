@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.devst.loginbasico"
+    namespace = "com.devst.voicegpt"
     compileSdk = 34
 
     defaultConfig {

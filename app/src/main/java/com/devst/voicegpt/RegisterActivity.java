@@ -1,4 +1,4 @@
-package com.devst.loginbasico;
+package com.devst.voicegpt;
 
 import android.os.Bundle;
 import android.util.Patterns;
@@ -12,15 +12,15 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.devst.loginbasico.network.ApiService;
-import com.devst.loginbasico.network.AuthResponse;
-import com.devst.loginbasico.network.RegisterRequest;
-import com.devst.loginbasico.network.RetrofitClient;
+import com.devst.voicegpt.network.ApiService;
+import com.devst.voicegpt.network.AuthResponse;
+import com.devst.voicegpt.network.RegisterRequest;
+import com.devst.voicegpt.network.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegistroActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     private EditText etNombre, etCorreo, etPassword, etConfirmar;
     private CheckBox checkBox;
     private ApiService apiService;
@@ -29,7 +29,7 @@ public class RegistroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
+        setContentView(R.layout.activity_register);
 
         etNombre = findViewById(R.id.etNombre);
         etCorreo = findViewById(R.id.etCorreo);
@@ -93,28 +93,28 @@ public class RegistroActivity extends AppCompatActivity {
                 progressDialog.dismiss();
 
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(RegistroActivity.this, "¡Registro exitoso! Iniciando sesión...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "¡Registro exitoso! Iniciando sesión...", Toast.LENGTH_SHORT).show();
 
                     String token = response.body().getToken();
                     Log.d("RegistroActivity", "Token recibido: " + token);
 
                     // 1. Guardar el token
-                    SharedPreferences settings = getSharedPreferences(MainActivity.PREFS_NAME, MODE_PRIVATE);
+                    SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, MODE_PRIVATE);
                     SharedPreferences.Editor editor = settings.edit();
-                    editor.putString(MainActivity.TOKEN_KEY, token);
+                    editor.putString(LoginActivity.TOKEN_KEY, token);
                     editor.apply();
 
                     // =======================================================
                     // ¡CAMBIO! Ir al Menú Principal, no al chat
                     // =======================================================
-                    Intent i = new Intent(RegistroActivity.this, MenuPrincipalActivity.class);
+                    Intent i = new Intent(RegisterActivity.this, HomeActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);
                     finish();
                     // =======================================================
 
                 } else {
-                    Toast.makeText(RegistroActivity.this, "Error: El correo ya está en uso", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Error: El correo ya está en uso", Toast.LENGTH_SHORT).show();
                     Log.e("RegistroActivity", "Error en registro: " + response.code());
                 }
             }
@@ -122,7 +122,7 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<AuthResponse> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(RegistroActivity.this, "Error de red: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Error de red: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("RegistroActivity", "Fallo de conexión: " + t.getMessage());
             }
         });

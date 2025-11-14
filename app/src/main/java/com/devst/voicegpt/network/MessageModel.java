@@ -1,4 +1,4 @@
-package com.devst.loginbasico.network;
+package com.devst.voicegpt.network;
 
 // Representa un mensaje en la base de datos
 public class MessageModel {

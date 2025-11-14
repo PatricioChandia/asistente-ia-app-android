@@ -1,4 +1,4 @@
-package com.devst.loginbasico;
+package com.devst.voicegpt;
 
 import org.junit.Test;
 

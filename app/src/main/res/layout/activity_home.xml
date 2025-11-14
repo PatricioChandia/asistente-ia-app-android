@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <!-- Fondo -->
+    <ImageView
+        android:id="@+id/imgfondo"
+        android:src="@drawable/fondo1"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#40000000"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp">
+
+        <!-- Contenedor para la bienvenida -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="48dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMenuProfile"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@mipmap/ic_launcher_round"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FFFFFF"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/tvBienvenida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cargando..."
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:shadowColor="#80000000"
+                android:shadowRadius="6"
+                android:shadowDx="0"
+                android:shadowDy="2"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnIrAlChat"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Iniciar Chat (Online)"
+            android:background="#80FFFFFF"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp"/>
+
+        <!--
+        =======================================================
+        ¡NUEVO BOTÓN!
+        =======================================================
+        -->
+        <Button
+            android:id="@+id/btnIrANotas"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Mis Notas (Local)"
+            android:background="#80FFFFFF"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp"/>
+        <!-- ======================================================= -->
+
+        <Button
+            android:id="@+id/btnVerPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Ver Mi Perfil (Online)"
+            android:background="#80FFFFFF"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnCerrarSesionMenu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Cerrar Sesión"
+            android:background="#80FF5555"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+</FrameLayout>

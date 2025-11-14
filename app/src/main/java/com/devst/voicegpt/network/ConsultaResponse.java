@@ -1,4 +1,4 @@
-package com.devst.loginbasico.network;
+package com.devst.voicegpt.network;
 
 // El JSON que RECIBIMOS de /api/consulta
 public class ConsultaResponse {

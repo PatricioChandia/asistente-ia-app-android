@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--¡NUEVOS PERMISOS!
-    Para leer imágenes de la galería (Android 13+)-->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <!-- Fallback para Android más antiguos -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
 
@@ -32,28 +29,32 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
         </activity>
 
-        <activity android:name=".AccesoActivity"></activity>
-        <activity android:name=".RegistroActivity" />
-        <activity android:name=".InfoBasicaActivity" />
-        <activity android:name=".EvaluacionEnviada" />
+        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
 
         <!--
-        ===================================================================
-        ¡NUEVAS ACTIVIDADES DECLARADAS!
-        ===================================================================
+        =======================================================
+        ¡NUEVA ACTIVIDAD DE NOTAS!
+        =======================================================
         -->
         <activity
-            android:name=".MenuPrincipalActivity"
+            android:name=".NotesActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
-        <activity
-            android:name=".PerfilActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
+        <!-- ======================================================= -->
 
     </application>
 

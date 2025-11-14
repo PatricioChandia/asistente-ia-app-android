@@ -1,4 +1,4 @@
-package com.devst.loginbasico;
+package com.devst.voicegpt;
 
 import android.Manifest;
 import android.content.Intent;
@@ -23,12 +23,12 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy; // <-- ¡NUEVO IMPORT!
 import com.bumptech.glide.signature.ObjectKey; // <-- ¡NUEVO IMPORT!
-import com.devst.loginbasico.network.ApiService;
-import com.devst.loginbasico.network.AuthResponse;
-import com.devst.loginbasico.network.ProfileImageResponse;
-import com.devst.loginbasico.network.ProfileResponse;
-import com.devst.loginbasico.network.ProfileUpdateRequest;
-import com.devst.loginbasico.network.RetrofitClient;
+import com.devst.voicegpt.network.ApiService;
+import com.devst.voicegpt.network.AuthResponse;
+import com.devst.voicegpt.network.ProfileImageResponse;
+import com.devst.voicegpt.network.ProfileResponse;
+import com.devst.voicegpt.network.ProfileUpdateRequest;
+import com.devst.voicegpt.network.RetrofitClient;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,7 +43,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PerfilActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     private Toolbar toolbarPerfil;
     private TextView tvPerfilEmail;
@@ -82,11 +82,11 @@ public class PerfilActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil);
+        setContentView(R.layout.activity_profile);
 
         // 1. Cargar Token e Inicializar API
-        SharedPreferences settings = getSharedPreferences(MainActivity.PREFS_NAME, MODE_PRIVATE);
-        authToken = settings.getString(MainActivity.TOKEN_KEY, null);
+        SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, MODE_PRIVATE);
+        authToken = settings.getString(LoginActivity.TOKEN_KEY, null);
         if (authToken == null) { irALogin(); return; }
         apiService = RetrofitClient.getAuthenticatedApiService(authToken);
 
@@ -127,7 +127,7 @@ public class PerfilActivity extends AppCompatActivity {
                         // ¡AQUÍ ESTÁ LA CORRECCIÓN!
                         // Forzamos a Glide a no usar la caché
                         // ===================================
-                        Glide.with(PerfilActivity.this)
+                        Glide.with(ProfileActivity.this)
                                 .load(imageUrl)
                                 .diskCacheStrategy(DiskCacheStrategy.NONE) // No guardar en disco
                                 .skipMemoryCache(true) // No guardar en RAM
@@ -189,18 +189,18 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ProfileImageResponse> call, Response<ProfileImageResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(PerfilActivity.this, "Foto actualizada", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "Foto actualizada", Toast.LENGTH_SHORT).show();
                     String newUrl = response.body().getProfileImageUrl();
                     Log.d(TAG, "Nueva URL de Cloudinary: " + newUrl);
                 } else {
-                    Toast.makeText(PerfilActivity.this, "Error al subir la foto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "Error al subir la foto", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Error al subir foto: " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<ProfileImageResponse> call, Throwable t) {
-                Toast.makeText(PerfilActivity.this, "Error de red: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "Error de red: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Fallo al subir foto: " + t.getMessage());
             }
         });
@@ -248,10 +248,10 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(PerfilActivity.this, "Perfil actualizado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "Perfil actualizado", Toast.LENGTH_SHORT).show();
                     finish(); // Cierra la actividad y vuelve al menú
                 } else {
-                    Toast.makeText(PerfilActivity.this, "Error al guardar", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "Error al guardar", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Error al guardar perfil: " + response.code());
                     if (response.code() == 401) irALogin();
                 }
@@ -261,7 +261,7 @@ public class PerfilActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<AuthResponse> call, Throwable t) {
-                Toast.makeText(PerfilActivity.this, "Error de red: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "Error de red: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Fallo al guardar perfil: " + t.getMessage());
                 btnGuardarPerfil.setEnabled(true);
                 btnGuardarPerfil.setText("Guardar Cambios");
@@ -270,7 +270,7 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void irALogin() {
-        Intent intent = new Intent(PerfilActivity.this, MainActivity.class);
+        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

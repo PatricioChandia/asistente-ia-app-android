@@ -1,4 +1,4 @@
-package com.devst.loginbasico.network;
+package com.devst.voicegpt.network;
 
 import java.util.List;
 import retrofit2.Call;

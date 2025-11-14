@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECE5DD"
-    tools:context=".AccesoActivity">
+    tools:context=".ChatActivity">
 
     <!-- Header: Título y Botón de Cerrar Sesión -->
     <com.google.android.material.appbar.AppBarLayout

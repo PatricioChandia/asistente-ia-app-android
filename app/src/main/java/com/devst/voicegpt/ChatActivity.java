@@ -1,10 +1,9 @@
-package com.devst.loginbasico;
+package com.devst.voicegpt;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,11 +12,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager; // <-- NUEVO
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.devst.loginbasico.network.ApiService;
-import com.devst.loginbasico.network.ConsultaRequest;
-import com.devst.loginbasico.network.ConsultaResponse;
-import com.devst.loginbasico.network.MessageModel;
-import com.devst.loginbasico.network.RetrofitClient;
+import com.devst.voicegpt.network.ApiService;
+import com.devst.voicegpt.network.ConsultaRequest;
+import com.devst.voicegpt.network.ConsultaResponse;
+import com.devst.voicegpt.network.MessageModel;
+import com.devst.voicegpt.network.RetrofitClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -26,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AccesoActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private Button btnCerrarSesion;
@@ -46,11 +45,11 @@ public class AccesoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_acceso);
+        setContentView(R.layout.activity_chat);
 
         // --- 1. Cargar el Token ---
-        SharedPreferences settings = getSharedPreferences(MainActivity.PREFS_NAME, MODE_PRIVATE);
-        authToken = settings.getString(MainActivity.TOKEN_KEY, null);
+        SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, MODE_PRIVATE);
+        authToken = settings.getString(LoginActivity.TOKEN_KEY, null);
 
         if (authToken == null) {
             Log.e(TAG, "¡Token no encontrado! Volviendo al Login.");
@@ -75,7 +74,7 @@ public class AccesoActivity extends AppCompatActivity {
         // --- 4. Configurar Listeners ---
         btnCerrarSesion.setOnClickListener(v -> {
             SharedPreferences.Editor editor = settings.edit();
-            editor.remove(MainActivity.TOKEN_KEY);
+            editor.remove(LoginActivity.TOKEN_KEY);
             editor.apply();
             Log.d(TAG, "Token borrado. Cerrando sesión.");
             irALogin();
@@ -104,7 +103,7 @@ public class AccesoActivity extends AppCompatActivity {
     // ===================================
 
     private void irALogin() {
-        Intent intent = new Intent(AccesoActivity.this, MainActivity.class);
+        Intent intent = new Intent(ChatActivity.this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
@@ -130,7 +129,7 @@ public class AccesoActivity extends AppCompatActivity {
                 } else {
                     Log.e(TAG, "Error al cargar historial: " + response.code());
                     if (response.code() == 401) {
-                        Toast.makeText(AccesoActivity.this, "Sesión expirada", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChatActivity.this, "Sesión expirada", Toast.LENGTH_SHORT).show();
                         irALogin();
                     }
                 }

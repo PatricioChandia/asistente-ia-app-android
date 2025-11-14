@@ -1,4 +1,4 @@
-package com.devst.loginbasico.network;
+package com.devst.voicegpt.network;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit; // <-- ¡NUEVO IMPORT!
@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "http://192.168.0.6:3000/";
+    private static final String BASE_URL = "https://asistente-ia-backend-keju.onrender.com";
 
     private static Retrofit retrofitBase = null;
 

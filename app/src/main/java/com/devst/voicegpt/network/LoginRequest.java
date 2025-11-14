@@ -1,4 +1,4 @@
-package com.devst.loginbasico.network;
+package com.devst.voicegpt.network;
 
 // Esta clase representa el JSON que enviaremos al servidor para el login
 public class LoginRequest {

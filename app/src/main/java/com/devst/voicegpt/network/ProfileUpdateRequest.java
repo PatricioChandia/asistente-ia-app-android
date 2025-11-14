@@ -1,4 +1,4 @@
-package com.devst.loginbasico.network;
+package com.devst.voicegpt.network;
 
 // Representa el body que enviamos a PUT /api/perfil
 public class ProfileUpdateRequest {

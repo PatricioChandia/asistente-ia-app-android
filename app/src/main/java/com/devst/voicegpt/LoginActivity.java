@@ -1,4 +1,4 @@
-package com.devst.loginbasico;
+package com.devst.voicegpt;
 
 import android.os.Bundle;
 import android.util.Patterns;
@@ -14,16 +14,16 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.devst.loginbasico.network.ApiService;
-import com.devst.loginbasico.network.AuthResponse;
-import com.devst.loginbasico.network.LoginRequest;
-import com.devst.loginbasico.network.RetrofitClient;
+import com.devst.voicegpt.network.ApiService;
+import com.devst.voicegpt.network.AuthResponse;
+import com.devst.voicegpt.network.LoginRequest;
+import com.devst.voicegpt.network.RetrofitClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
     private Button btnLogin;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         email     = findViewById(R.id.email);
         password  = findViewById(R.id.password);
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     // =======================================================
                     // ¡CAMBIO! Ir al Menú Principal, no al chat
                     // =======================================================
-                    Intent intent = new Intent(MainActivity.this, MenuPrincipalActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     // Limpiamos la pila para que no pueda "volver" al login
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     // Error (credenciales incorrectas, etc.)
-                    Toast.makeText(MainActivity.this, "Credenciales Incorrectas", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Credenciales Incorrectas", Toast.LENGTH_SHORT).show();
                     Log.e("MainActivity", "Error en login: " + response.code());
                 }
             }
@@ -120,14 +120,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<AuthResponse> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(MainActivity.this, "Error de red: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Error de red: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("MainActivity", "Fallo de conexión: " + t.getMessage());
             }
         });
     }
 
     public void onClickCrear(View view) {
-        Intent intent = new Intent(MainActivity.this, RegistroActivity.class);
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
 }

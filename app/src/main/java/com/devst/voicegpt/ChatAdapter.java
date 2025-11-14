@@ -1,4 +1,4 @@
-package com.devst.loginbasico;
+package com.devst.voicegpt;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.devst.loginbasico.network.MessageModel;
+import com.devst.voicegpt.network.MessageModel;
 
 import java.util.ArrayList;
 import java.util.List;

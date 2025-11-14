@@ -1,4 +1,4 @@
-package com.devst.loginbasico.network;
+package com.devst.voicegpt.network;
 
 // Esta clase representa el JSON que recibiremos del servidor tras un login o registro exitoso
 public class AuthResponse {

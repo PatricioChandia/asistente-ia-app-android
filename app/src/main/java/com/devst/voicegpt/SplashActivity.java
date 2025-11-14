@@ -1,4 +1,4 @@
-package com.devst.loginbasico;
+package com.devst.voicegpt;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,8 +26,8 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void checkTokenAndNavigate() {
-        SharedPreferences settings = getSharedPreferences(MainActivity.PREFS_NAME, MODE_PRIVATE);
-        String authToken = settings.getString(MainActivity.TOKEN_KEY, null);
+        SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, MODE_PRIVATE);
+        String authToken = settings.getString(LoginActivity.TOKEN_KEY, null);
 
         Intent intent;
 
@@ -36,10 +36,10 @@ public class SplashActivity extends AppCompatActivity {
         // =======================================================
         if (authToken != null) {
             // Si SÍ hay token, vamos al Menú Principal
-            intent = new Intent(SplashActivity.this, MenuPrincipalActivity.class); // <-- CAMBIO
+            intent = new Intent(SplashActivity.this, HomeActivity.class); // <-- CAMBIO
         } else {
             // Si NO hay token, vamos al Login
-            intent = new Intent(SplashActivity.this, MainActivity.class);
+            intent = new Intent(SplashActivity.this, LoginActivity.class);
         }
         // =======================================================
 
